@@ -13,27 +13,7 @@ connection.connect(function(err) {
   console.log("connected as id " + connection.threadId + "\n");
   readProducts();
 });
-// function updateProduct() {
-//   console.log("Updating all Rocky Road quantities...\n");
-//   var query = connection.query(
-//     "UPDATE products SET ? WHERE ?",
-//     [
-//       {
-//         quantity: 100
-//       },
-//       {
-//         flavor: "Rocky Road"
-//       }
-//     ],
-//     function(err, res) {
-//       console.log(res.affectedRows + " products updated!\n");
-//       // Call deleteProduct AFTER the UPDATE completes
-//       deleteProduct();
-//     }
-//   );
-//   // logs the actual query being run
-//   console.log(query.sql);
-// }
+
 function readProducts() {
   console.log("Selecting all products...\n");
   connection.query("SELECT id, product_name, price  FROM products", function(err, res) {
@@ -50,7 +30,7 @@ function readProducts() {
         // Log the results. 
         console.log('Command-line input received:');
         console.log(' So you would like: ' + result.quantity + " " + result.item + "'s");
-        console.log(' That will cost you $$$$');
+        console.log(' That will cost you' + result.quantity * price);
       });
 
   });
